@@ -188,5 +188,34 @@ namespace Kontroler
         }
 
         #endregion
+
+        #region Grad
+
+        public int SacuvajGrad(Grad grad)
+        {
+            return ExecuteWithConnection(() => Broker.Instance.InsertGrad(grad));
+        }
+
+        public void IzmeniGrad(Grad grad)
+        {
+            ExecuteWithConnection(() => Broker.Instance.UpdateGrad(grad));
+        }
+
+        public void ObrisiGrad(int id)
+        {
+            ExecuteWithConnection(() => Broker.Instance.DeleteGrad(id));
+        }
+
+        public Grad VratiGradPoId(int id)
+        {
+            return ExecuteWithConnection(() => Broker.Instance.GetGradById(id));
+        }
+
+        public List<Grad> VratiSveGradove()
+        {
+            return ExecuteWithConnection(() => Broker.Instance.GetAllGradovi());
+        }
+
+        #endregion
     }
 }

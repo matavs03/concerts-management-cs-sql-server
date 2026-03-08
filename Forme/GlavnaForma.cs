@@ -23,5 +23,12 @@
             IzvođačForma forma = new IzvođačForma();
             forma.ShowDialog();
         }
+
+        private void gradToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GradForma forma = new GradForma();
+            forma.ShowDialog();
+
+        }
     }
 }

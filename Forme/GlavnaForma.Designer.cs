@@ -58,6 +58,7 @@
             gradToolStripMenuItem.Name = "gradToolStripMenuItem";
             gradToolStripMenuItem.Size = new Size(44, 20);
             gradToolStripMenuItem.Text = "Grad";
+            gradToolStripMenuItem.Click += gradToolStripMenuItem_Click;
             // 
             // lokacijaToolStripMenuItem
             // 
