@@ -10,5 +10,7 @@ namespace Domen
     {
         public string Naziv { get; set; }
         public int BrojČlanova { get; set; }
+
+        public override string PrikazNaziv => Naziv;
     }
 }

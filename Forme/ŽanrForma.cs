@@ -25,10 +25,12 @@ namespace Forme
                 dgvZanrovi.DataSource = Kontroler.Kontroler.Instance.VratiSveZanrove();
 
                 if (dgvZanrovi.Columns["Id"] != null)
-                    dgvZanrovi.Columns["Id"].HeaderText = "ID";
+                    dgvZanrovi.Columns["Id"].Visible = false;
 
                 if (dgvZanrovi.Columns["Naziv"] != null)
                     dgvZanrovi.Columns["Naziv"].HeaderText = "Naziv žanra";
+
+                dgvZanrovi.ClearSelection();
             }
             catch (Exception ex)
             {

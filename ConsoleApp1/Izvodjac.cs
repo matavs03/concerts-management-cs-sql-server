@@ -19,5 +19,7 @@ namespace Domen
         {
             return $"{Id} {Email}";
         }
+
+        public virtual string PrikazNaziv => "";
     }
 }

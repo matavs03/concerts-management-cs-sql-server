@@ -51,7 +51,7 @@
             žanrToolStripMenuItem.Name = "žanrToolStripMenuItem";
             žanrToolStripMenuItem.Size = new Size(43, 20);
             žanrToolStripMenuItem.Text = "Žanr";
-            žanrToolStripMenuItem.Click += this.žanrToolStripMenuItem_Click;
+            žanrToolStripMenuItem.Click += žanrToolStripMenuItem_Click;
             // 
             // gradToolStripMenuItem
             // 
@@ -70,6 +70,7 @@
             izvođačToolStripMenuItem.Name = "izvođačToolStripMenuItem";
             izvođačToolStripMenuItem.Size = new Size(59, 20);
             izvođačToolStripMenuItem.Text = "Izvođač";
+            izvođačToolStripMenuItem.Click += izvođačToolStripMenuItem_Click;
             // 
             // koncertToolStripMenuItem
             // 
