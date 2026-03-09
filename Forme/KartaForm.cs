@@ -26,24 +26,21 @@ namespace Forme
         private void KartaForm_Load(object sender, EventArgs e)
         {
             label1.Text = $"Kupovina karata za koncert: {selektovaniKoncert.Naziv}";
+            OsveziCenu();
         }
 
-        private void label4_Click(object sender, EventArgs e)
-        {
+       
 
-        }
 
-      
-            private void btnKupi_Click(object sender, EventArgs e)
+        private void btnKupi_Click(object sender, EventArgs e)
         {
             try
             {
                 Karta karta = new Karta
                 {
                     Koncert = selektovaniKoncert,
-                    Red = (int)numericUpDown1.Value,
-                    Sediste = (int)numericUpDown2.Value,
-                  //  Cena = IzracunajCenu(numericUpDown1.Value)
+                    Red = (int)numericUpDownRed.Value,
+                    Sediste = (int)numericUpDownSediste.Value,
                 };
 
                 Kontroler.Kontroler.Instance.SacuvajKartu(karta);
@@ -59,15 +56,29 @@ namespace Forme
 
         }
 
-        private decimal IzracunajCenu(int Red)
+        private decimal IzracunajCenu(int red)
         {
-            if (Red <= 5)
-                return 4000;
+            if (red >= 1 && red <= 20)
+                return 4500;
 
-            if (Red <= 10)
+            if (red >= 21 && red <= 50)
                 return 3000;
 
-            return 2000;
+            return 1800;
+        }
+
+        private void OsveziCenu()
+        {
+            int red = (int)numericUpDownRed.Value;
+            decimal cena = IzracunajCenu(red);
+            txtCena.Text = cena.ToString();
+        }
+
+       
+
+        private void numericUpDownRed_ValueChanged(object sender, EventArgs e)
+        {
+            OsveziCenu();
         }
     }
 }

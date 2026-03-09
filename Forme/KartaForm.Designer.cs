@@ -33,11 +33,11 @@
             label3 = new Label();
             label4 = new Label();
             btnKupi = new Button();
-            numericUpDown1 = new NumericUpDown();
-            numericUpDown2 = new NumericUpDown();
-            textBox1 = new TextBox();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
+            numericUpDownRed = new NumericUpDown();
+            numericUpDownSediste = new NumericUpDown();
+            txtCena = new TextBox();
+            ((System.ComponentModel.ISupportInitialize)numericUpDownRed).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDownSediste).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -75,7 +75,6 @@
             label4.Size = new Size(51, 25);
             label4.TabIndex = 3;
             label4.Text = "Cena";
-            label4.Click += label4_Click;
             // 
             // btnKupi
             // 
@@ -87,43 +86,44 @@
             btnKupi.UseVisualStyleBackColor = true;
             btnKupi.Click += btnKupi_Click;
             // 
-            // numericUpDown1
+            // numericUpDownRed
             // 
-            numericUpDown1.Location = new Point(134, 175);
-            numericUpDown1.Maximum = new decimal(new int[] { 80, 0, 0, 0 });
-            numericUpDown1.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(180, 31);
-            numericUpDown1.TabIndex = 5;
-            numericUpDown1.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            numericUpDownRed.Location = new Point(134, 175);
+            numericUpDownRed.Maximum = new decimal(new int[] { 80, 0, 0, 0 });
+            numericUpDownRed.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            numericUpDownRed.Name = "numericUpDownRed";
+            numericUpDownRed.Size = new Size(180, 31);
+            numericUpDownRed.TabIndex = 5;
+            numericUpDownRed.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            numericUpDownRed.ValueChanged += numericUpDownRed_ValueChanged;
             // 
-            // numericUpDown2
+            // numericUpDownSediste
             // 
-            numericUpDown2.Location = new Point(134, 105);
-            numericUpDown2.Maximum = new decimal(new int[] { 50, 0, 0, 0 });
-            numericUpDown2.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
-            numericUpDown2.Name = "numericUpDown2";
-            numericUpDown2.Size = new Size(180, 31);
-            numericUpDown2.TabIndex = 6;
-            numericUpDown2.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            numericUpDownSediste.Location = new Point(134, 105);
+            numericUpDownSediste.Maximum = new decimal(new int[] { 50, 0, 0, 0 });
+            numericUpDownSediste.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            numericUpDownSediste.Name = "numericUpDownSediste";
+            numericUpDownSediste.Size = new Size(180, 31);
+            numericUpDownSediste.TabIndex = 6;
+            numericUpDownSediste.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
-            // textBox1
+            // txtCena
             // 
-            textBox1.Location = new Point(135, 248);
-            textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
-            textBox1.Size = new Size(179, 31);
-            textBox1.TabIndex = 7;
-            textBox1.TextAlign = HorizontalAlignment.Right;
+            txtCena.Location = new Point(135, 248);
+            txtCena.Name = "txtCena";
+            txtCena.ReadOnly = true;
+            txtCena.Size = new Size(179, 31);
+            txtCena.TabIndex = 7;
+            txtCena.TextAlign = HorizontalAlignment.Right;
             // 
             // KartaForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(453, 378);
-            Controls.Add(textBox1);
-            Controls.Add(numericUpDown2);
-            Controls.Add(numericUpDown1);
+            Controls.Add(txtCena);
+            Controls.Add(numericUpDownSediste);
+            Controls.Add(numericUpDownRed);
             Controls.Add(btnKupi);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -132,8 +132,8 @@
             Name = "KartaForm";
             Text = "KartaForm";
             Load += KartaForm_Load;
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDownRed).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDownSediste).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -145,8 +145,8 @@
         private Label label3;
         private Label label4;
         private Button btnKupi;
-        private NumericUpDown numericUpDown1;
-        private NumericUpDown numericUpDown2;
-        private TextBox textBox1;
+        private NumericUpDown numericUpDownRed;
+        private NumericUpDown numericUpDownSediste;
+        private TextBox txtCena;
     }
 }
