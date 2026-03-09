@@ -8,6 +8,7 @@ namespace Domen
 {
     public class Lokacija
     {
+        public int id { get; set; }
         public Grad grad { get; set; }
 
         public int LokacijaId { get; set; }

@@ -488,6 +488,205 @@ namespace BrokerBazePodataka
 
         #endregion
 
+        #region Grad
+
+        public int InsertGrad(Grad grad)
+        {
+            SqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "sp_Grad_Insert";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@Naziv", grad.Naziv);
+
+            int noviId = (int)cmd.ExecuteScalar();
+            grad.Id = noviId;
+            return noviId;
+        }
+
+        public void UpdateGrad(Grad grad)
+        {
+            SqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "sp_Grad_Update";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@Id", grad.Id);
+            cmd.Parameters.AddWithValue("@Naziv", grad.Naziv);
+
+            cmd.ExecuteNonQuery();
+        }
+
+        public void DeleteGrad(int id)
+        {
+            SqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "sp_Grad_Delete";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@Id", id);
+
+            cmd.ExecuteNonQuery();
+        }
+
+        public Grad GetGradById(int id)
+        {
+            SqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "sp_Grad_GetById";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@Id", id);
+
+            using SqlDataReader reader = cmd.ExecuteReader();
+
+            if (reader.Read())
+            {
+                return new Grad
+                {
+                    Id = reader.GetInt32(0),
+                    Naziv = reader.GetString(1)
+                };
+            }
+
+            return null;
+        }
+
+        public List<Grad> GetAllGradovi()
+        {
+            List<Grad> gradovi = new List<Grad>();
+
+            SqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "sp_Grad_GetAll";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            using SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                Grad grad = new Grad
+                {
+                    Id = reader.GetInt32(0),
+                    Naziv = reader.GetString(1)
+                };
+
+                gradovi.Add(grad);
+            }
+
+            return gradovi;
+        }
+
+        #endregion
+
+        #region Lokacija
+
+        public int InsertLokacija(Lokacija lokacija)
+        {
+            SqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "sp_Lokacija_Insert";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@Naziv", lokacija.Naziv);
+            cmd.Parameters.AddWithValue("@Adresa", lokacija.Adresa);
+            cmd.Parameters.AddWithValue("@Kapacitet", lokacija.Kapacitet);
+            cmd.Parameters.AddWithValue("@GradId", lokacija.grad.Id);
+
+            int noviId = (int)cmd.ExecuteScalar();
+            lokacija.id = noviId;
+
+            return noviId;
+        }
+
+        public void UpdateLokacija(Lokacija lokacija)
+        {
+            SqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "sp_Lokacija_Update";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@Id", lokacija.id);
+            cmd.Parameters.AddWithValue("@Naziv", lokacija.Naziv);
+            cmd.Parameters.AddWithValue("@Adresa", lokacija.Adresa);
+            cmd.Parameters.AddWithValue("@Kapacitet", lokacija.Kapacitet);
+            cmd.Parameters.AddWithValue("@GradId", lokacija.grad.Id);
+
+            cmd.ExecuteNonQuery();
+        }
+
+        public void DeleteLokacija(int id)
+        {
+            SqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "sp_Lokacija_Delete";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@Id", id);
+
+            cmd.ExecuteNonQuery();
+        }
+
+        public Lokacija GetLokacijaById(int id)
+        {
+            SqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "sp_Lokacija_GetById";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@Id", id);
+
+            using SqlDataReader reader = cmd.ExecuteReader();
+
+            if (reader.Read())
+            {
+                Grad g = new Grad
+                {
+                    Id = reader.GetInt32(4),
+                    Naziv = reader.GetString(5)
+                };
+
+                Lokacija lokacija = new Lokacija
+                {
+                    id = reader.GetInt32(0),
+                    Naziv = reader.GetString(1),
+                    Adresa = reader.GetString(2),
+                    Kapacitet = reader.GetInt32(3),
+                    grad = g
+                };
+
+                return lokacija;
+            }
+
+            return null;
+        }
+
+        public List<Lokacija> GetAllLokacije()
+        {
+            List<Lokacija> lokacije = new List<Lokacija>();
+
+            SqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "sp_Lokacija_GetAll";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            using SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                Grad g = new Grad
+                {
+                    Id = reader.GetInt32(4),
+                    Naziv = reader.GetString(5)
+                };
+
+                Lokacija lokacija = new Lokacija
+                {
+                    id = reader.GetInt32(0),
+                    Naziv = reader.GetString(1),
+                    Adresa = reader.GetString(2),
+                    Kapacitet = reader.GetInt32(3),
+                    grad = g
+                };
+
+                lokacije.Add(lokacija);
+            }
+
+            return lokacije;
+        }
+
+        #endregion
+
         #region Koncert
         public List<Koncert> GetAllKoncerti()
         {

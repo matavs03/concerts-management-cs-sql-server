@@ -1,40 +1,46 @@
 ﻿using Domen;
-using Kontroler;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Forme
 {
-    public partial class ŽanrForma : Form
+    public partial class GradForma : Form
     {
-        public ŽanrForma()
+        public GradForma()
         {
             InitializeComponent();
         }
 
-        private void ŽanrForma_Load(object sender, EventArgs e)
+        private void GradForma_Load(object sender, EventArgs e)
         {
-            UcitajZanrove();
+            UcitajGradove();
         }
 
-        private void UcitajZanrove()
+        private void UcitajGradove()
         {
             try
             {
                 dgvZanrovi.DataSource = null;
-                dgvZanrovi.DataSource = Kontroler.Kontroler.Instance.VratiSveZanrove();
+                dgvZanrovi.DataSource = Kontroler.Kontroler.Instance.VratiSveGradove();
 
                 if (dgvZanrovi.Columns["Id"] != null)
                     dgvZanrovi.Columns["Id"].Visible = false;
 
                 if (dgvZanrovi.Columns["Naziv"] != null)
-                    dgvZanrovi.Columns["Naziv"].HeaderText = "Naziv žanra";
+                    dgvZanrovi.Columns["Naziv"].HeaderText = "Naziv grada";
 
                 dgvZanrovi.ClearSelection();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Greška pri učitavanju žanrova: " + ex.Message);
+                MessageBox.Show("Greška pri učitavanju gradova: " + ex.Message);
             }
         }
 
@@ -44,24 +50,24 @@ namespace Forme
             {
                 if (string.IsNullOrWhiteSpace(txtNaziv.Text))
                 {
-                    MessageBox.Show("Unesite naziv žanra.");
+                    MessageBox.Show("Unesite naziv grada.");
                     return;
                 }
 
-                Zanr z = new Zanr
+                Grad g = new Grad
                 {
                     Naziv = txtNaziv.Text.Trim()
                 };
 
-                Kontroler.Kontroler.Instance.SacuvajZanr(z);
-                MessageBox.Show("Uspešno dodat žanr.");
+                Kontroler.Kontroler.Instance.SacuvajGrad(g);
+                MessageBox.Show("Uspešno dodat grad.");
 
                 txtNaziv.Clear();
-                UcitajZanrove();
+                UcitajGradove();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Greška pri dodavanju žanra: " + ex.Message);
+                MessageBox.Show("Greška pri dodavanju grada: " + ex.Message);
             }
         }
 
@@ -71,28 +77,28 @@ namespace Forme
             {
                 if (dgvZanrovi.CurrentRow == null)
                 {
-                    MessageBox.Show("Izaberite žanr za izmenu.");
+                    MessageBox.Show("Izaberite grad za izmenu.");
                     return;
                 }
 
                 if (string.IsNullOrWhiteSpace(txtNaziv.Text))
                 {
-                    MessageBox.Show("Unesite naziv žanra.");
+                    MessageBox.Show("Unesite naziv grada.");
                     return;
                 }
 
-                Zanr selektovan = (Zanr)dgvZanrovi.CurrentRow.DataBoundItem;
+                Grad selektovan = (Grad)dgvZanrovi.CurrentRow.DataBoundItem;
                 selektovan.Naziv = txtNaziv.Text.Trim();
 
-                Kontroler.Kontroler.Instance.IzmeniZanr(selektovan);
-                MessageBox.Show("Uspešno izmenjen žanr.");
+                Kontroler.Kontroler.Instance.IzmeniGrad(selektovan);
+                MessageBox.Show("Uspešno izmenjen grad.");
 
                 txtNaziv.Clear();
-                UcitajZanrove();
+                UcitajGradove();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Greška pri izmeni žanra: " + ex.Message);
+                MessageBox.Show("Greška pri izmeni grada: " + ex.Message);
             }
         }
 
@@ -102,35 +108,35 @@ namespace Forme
             {
                 if (dgvZanrovi.CurrentRow == null)
                 {
-                    MessageBox.Show("Izaberite žanr za brisanje.");
+                    MessageBox.Show("Izaberite grad za brisanje.");
                     return;
                 }
 
-                Zanr selektovan = (Zanr)dgvZanrovi.CurrentRow.DataBoundItem;
+                Grad selektovan = (Grad)dgvZanrovi.CurrentRow.DataBoundItem;
 
                 DialogResult rezultat = MessageBox.Show(
-                    $"Da li ste sigurni da želite da obrišete žanr '{selektovan.Naziv}'?",
+                    $"Da li ste sigurni da želite da obrišete grad '{selektovan.Naziv}'?",
                     "Potvrda brisanja",
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question);
 
                 if (rezultat == DialogResult.No) return;
 
-                Kontroler.Kontroler.Instance.ObrisiZanr(selektovan.Id);
-                MessageBox.Show("Uspešno obrisan žanr.");
+                Kontroler.Kontroler.Instance.ObrisiGrad(selektovan.Id);
+                MessageBox.Show("Uspešno obrisan grad.");
 
                 txtNaziv.Clear();
-                UcitajZanrove();
+                UcitajGradove();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Greška pri brisanju žanra: " + ex.Message);
+                MessageBox.Show("Greška pri brisanju grada: " + ex.Message);
             }
         }
 
         private void btnOsvezi_Click(object sender, EventArgs e)
         {
-            UcitajZanrove();
+            UcitajGradove();
         }
 
         private void dgvZanrovi_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -139,18 +145,19 @@ namespace Forme
             {
                 if (e.RowIndex < 0) return;
 
-                Zanr selektovan = (Zanr)dgvZanrovi.Rows[e.RowIndex].DataBoundItem;
+                Grad selektovan = (Grad)dgvZanrovi.Rows[e.RowIndex].DataBoundItem;
                 txtNaziv.Text = selektovan.Naziv;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Greška pri izboru žanra: " + ex.Message);
+                MessageBox.Show("Greška pri izboru grada: " + ex.Message);
             }
         }
 
         private void txtNaziv_TextChanged(object sender, EventArgs e)
         {
-
+            // Možeš dodati logiku validacije dok korisnik unosi tekst
         }
+
     }
 }

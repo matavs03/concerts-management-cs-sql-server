@@ -1,4 +1,4 @@
-namespace Forme
+﻿namespace Forme
 {
     public partial class GlavnaForma : Form
     {
@@ -12,10 +12,23 @@ namespace Forme
 
         }
 
-        private void �anrToolStripMenuItem_Click(object sender, EventArgs e)
+        private void žanrToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            �anrForma forma = new �anrForma();
+            ŽanrForma forma = new ŽanrForma();
             forma.ShowDialog();
+        }
+
+        private void izvođačToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            IzvođačForma forma = new IzvođačForma();
+            forma.ShowDialog();
+        }
+
+        private void gradToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GradForma forma = new GradForma();
+            forma.ShowDialog();
+
         }
         private void koncertToolStripMenuItem_Click(object sender, EventArgs e)
         {

@@ -25,5 +25,7 @@ namespace Domen
 
             return Email;
         }
+
+        public virtual string PrikazNaziv => "";
     }
 }

@@ -60,6 +60,7 @@
             gradToolStripMenuItem.Name = "gradToolStripMenuItem";
             gradToolStripMenuItem.Size = new Size(66, 29);
             gradToolStripMenuItem.Text = "Grad";
+            gradToolStripMenuItem.Click += gradToolStripMenuItem_Click;
             // 
             // lokacijaToolStripMenuItem
             // 
@@ -72,6 +73,7 @@
             izvođačToolStripMenuItem.Name = "izvođačToolStripMenuItem";
             izvođačToolStripMenuItem.Size = new Size(89, 29);
             izvođačToolStripMenuItem.Text = "Izvođač";
+            izvođačToolStripMenuItem.Click += izvođačToolStripMenuItem_Click;
             // 
             // koncertToolStripMenuItem
             // 
