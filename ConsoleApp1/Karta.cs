@@ -10,9 +10,6 @@ namespace Domen
     {
 
         public Lokacija lokacija { get; set; }
-
-       
-
         public int Cena { get; set; }
 
         public int Sediste { get; set; }
@@ -22,7 +19,7 @@ namespace Domen
         public DateTime Datum { get; set; }
 
         public Izvodjac izvodjac { get; set; }
-
+        public Koncert Koncert { get; set; }
 
 
         public override string? ToString()

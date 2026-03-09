@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Forme
 {
@@ -24,9 +25,49 @@ namespace Forme
 
         private void KartaForm_Load(object sender, EventArgs e)
         {
-            label1.Text = selektovaniKoncert.Naziv;
+            label1.Text = $"Kupovina karata za koncert: {selektovaniKoncert.Naziv}";
         }
 
-       
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+      
+            private void btnKupi_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Karta karta = new Karta
+                {
+                    Koncert = selektovaniKoncert,
+                    Red = (int)numericUpDown1.Value,
+                    Sediste = (int)numericUpDown2.Value,
+                  //  Cena = IzracunajCenu(numericUpDown1.Value)
+                };
+
+                Kontroler.Kontroler.Instance.SacuvajKartu(karta);
+
+                MessageBox.Show("Karta je uspešno kupljena.");
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private decimal IzracunajCenu(int Red)
+        {
+            if (Red <= 5)
+                return 4000;
+
+            if (Red <= 10)
+                return 3000;
+
+            return 2000;
+        }
     }
 }

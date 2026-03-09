@@ -849,5 +849,22 @@ namespace BrokerBazePodataka
 
         #endregion
 
+
+        #region Karta
+        public void InsertKarta(Karta karta)
+        {
+            SqlCommand command = connection.CreateCommand();
+            command.CommandText = "sp_Karta_Insert";
+            command.CommandType = CommandType.StoredProcedure;
+
+            command.Parameters.AddWithValue("@IzvođačId", karta.Koncert.izvodjac.Id);
+            command.Parameters.AddWithValue("@LokacijaId", karta.Koncert.lokacija.LokacijaId);
+            command.Parameters.AddWithValue("@Datum", karta.Koncert.Datum.Date);
+            command.Parameters.AddWithValue("@Red", karta.Red);
+            command.Parameters.AddWithValue("@Sedište", karta.Sediste);
+
+            command.ExecuteNonQuery();
+        }
+        #endregion
     }
 }

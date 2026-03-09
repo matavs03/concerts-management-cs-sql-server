@@ -253,9 +253,18 @@ namespace Kontroler
             ExecuteWithConnection(() => Broker.Instance.UpdateKoncert(koncertZaIzmenu, noviKoncert));
         }
 
+       
+
         #endregion
 
+
+        #region Karta
+        public void SacuvajKartu(Karta karta)
+        {
+            ExecuteWithConnection(() => Broker.Instance.InsertKarta(karta));
+        }
+        #endregion
     }
-   
+
 
 }
