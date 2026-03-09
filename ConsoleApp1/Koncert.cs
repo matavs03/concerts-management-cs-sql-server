@@ -16,17 +16,17 @@ namespace Domen
 
         public int VremeTrajanja { get; set; }
 
-        public DateTime VremePocetka { get; set; }
+        public TimeSpan VremePocetka { get; set; }
 
         public DateTime Datum { get; set; }
 
         public Izvodjac izvodjac { get; set; }
 
-
+    
 
         public override string? ToString()
         {
-            return $"{lokacija.ToString()}, {izvodjac.ToString}, {Status}, {Naziv}, {VremeTrajanja}, {VremePocetka}, {Datum}";
+            return $" {Naziv}, - {izvodjac?.ToString()}, {Status},{VremeTrajanja}, {VremePocetka}, {Datum}, {lokacija.Naziv}, {lokacija.Adresa}";
         }
     }
 }

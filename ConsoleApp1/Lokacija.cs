@@ -10,15 +10,20 @@ namespace Domen
     {
         public Grad grad { get; set; }
 
+        public int LokacijaId { get; set; }
         public string Naziv { get; set; }
 
         public string Adresa { get; set; }
 
         public int Kapacitet { get; set; }
 
+        // public override string? ToString()
+        //{
+        //  return $"{grad?.ToString()} {Naziv}, {Adresa}, {Kapacitet}";
+        //}
         public override string? ToString()
         {
-            return $"{grad.ToString()} {Naziv}, {Adresa}, {Kapacitet}";
+            return $"{Naziv}";
         }
     }
 }

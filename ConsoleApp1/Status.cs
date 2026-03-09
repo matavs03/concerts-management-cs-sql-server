@@ -8,8 +8,9 @@ namespace Domen
 {
     public enum Status
     {
-        Aktivan,
+        Zakazan,
         Otkazan,
-        Održan
+        Održan,
+        Rasprodat,
     }
 }

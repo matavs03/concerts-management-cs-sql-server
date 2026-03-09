@@ -39,51 +39,55 @@
             // 
             // menuStrip1
             // 
+            menuStrip1.ImageScalingSize = new Size(24, 24);
             menuStrip1.Items.AddRange(new ToolStripItem[] { žanrToolStripMenuItem, gradToolStripMenuItem, lokacijaToolStripMenuItem, izvođačToolStripMenuItem, koncertToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(800, 24);
+            menuStrip1.Padding = new Padding(9, 3, 0, 3);
+            menuStrip1.Size = new Size(1143, 35);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
             // žanrToolStripMenuItem
             // 
             žanrToolStripMenuItem.Name = "žanrToolStripMenuItem";
-            žanrToolStripMenuItem.Size = new Size(43, 20);
+            žanrToolStripMenuItem.Size = new Size(63, 29);
             žanrToolStripMenuItem.Text = "Žanr";
-            žanrToolStripMenuItem.Click += this.žanrToolStripMenuItem_Click;
+            žanrToolStripMenuItem.Click += žanrToolStripMenuItem_Click;
             // 
             // gradToolStripMenuItem
             // 
             gradToolStripMenuItem.Name = "gradToolStripMenuItem";
-            gradToolStripMenuItem.Size = new Size(44, 20);
+            gradToolStripMenuItem.Size = new Size(66, 29);
             gradToolStripMenuItem.Text = "Grad";
             // 
             // lokacijaToolStripMenuItem
             // 
             lokacijaToolStripMenuItem.Name = "lokacijaToolStripMenuItem";
-            lokacijaToolStripMenuItem.Size = new Size(62, 20);
+            lokacijaToolStripMenuItem.Size = new Size(90, 29);
             lokacijaToolStripMenuItem.Text = "Lokacija";
             // 
             // izvođačToolStripMenuItem
             // 
             izvođačToolStripMenuItem.Name = "izvođačToolStripMenuItem";
-            izvođačToolStripMenuItem.Size = new Size(59, 20);
+            izvođačToolStripMenuItem.Size = new Size(89, 29);
             izvođačToolStripMenuItem.Text = "Izvođač";
             // 
             // koncertToolStripMenuItem
             // 
             koncertToolStripMenuItem.Name = "koncertToolStripMenuItem";
-            koncertToolStripMenuItem.Size = new Size(60, 20);
+            koncertToolStripMenuItem.Size = new Size(88, 29);
             koncertToolStripMenuItem.Text = "Koncert";
+            koncertToolStripMenuItem.Click += koncertToolStripMenuItem_Click;
             // 
             // GlavnaForma
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1143, 750);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
+            Margin = new Padding(4, 5, 4, 5);
             Name = "GlavnaForma";
             Text = "Form1";
             Load += Form1_Load;

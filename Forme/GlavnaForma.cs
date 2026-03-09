@@ -17,5 +17,10 @@ namespace Forme
             ŽanrForma forma = new ŽanrForma();
             forma.ShowDialog();
         }
+        private void koncertToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            KoncertForma forma = new KoncertForma();
+            forma.ShowDialog();
+        }
     }
 }

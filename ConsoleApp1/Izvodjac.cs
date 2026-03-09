@@ -17,7 +17,13 @@ namespace Domen
 
         public override string? ToString()
         {
-            return $"{Id} {Email}";
+            if (this is Bend bend)
+                return $"Bend {bend.Naziv}";
+
+            if (this is Muzicar muzicar)
+                return $"{muzicar.Ime} {muzicar.Prezime}";
+
+            return Email;
         }
     }
 }

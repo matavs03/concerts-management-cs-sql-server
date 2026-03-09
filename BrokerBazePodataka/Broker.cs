@@ -116,7 +116,7 @@ namespace BrokerBazePodataka
 
         public List<Zanr> GetAllZanrovi()
         {
-            
+
             List<Zanr> zanrovi = new List<Zanr>();
 
             SqlCommand cmd = connection.CreateCommand();
@@ -135,7 +135,7 @@ namespace BrokerBazePodataka
 
                 zanrovi.Add(zanr);
             }
-            
+
             return zanrovi;
         }
 
@@ -487,5 +487,199 @@ namespace BrokerBazePodataka
         }
 
         #endregion
+
+        #region Koncert
+        public List<Koncert> GetAllKoncerti()
+        {
+            List<Koncert> koncerti = new List<Koncert>();
+
+            SqlCommand command = connection.CreateCommand();
+            command.CommandText = "sp_Koncert_GetAllPrikaz";
+            command.CommandType = CommandType.StoredProcedure;
+
+            using SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                Grad g = new Grad
+                {
+                    Id = (int)reader["GradId"],
+                    Naziv = (string)reader["NazivGrada"]
+                };
+
+                Lokacija l = new Lokacija
+                {
+                    LokacijaId = (int)reader["LokacijaId"],
+                    Naziv = (string)reader["NazivLokacije"],
+                    Adresa = (string)reader["Adresa"],
+                    Kapacitet = (int)reader["Kapacitet"],
+                    grad = g
+                };
+
+                Izvodjac izvodjac;
+
+                if (reader["NazivBenda"] != DBNull.Value)
+                {
+                    izvodjac = new Bend
+                    {
+                        Id = (int)reader["IzvođačId"],
+                        Email = (string)reader["IzvođačEmail"],
+                        Naziv = (string)reader["NazivBenda"],
+                        BrojČlanova = (int)reader["BrojČlanova"]
+                    };
+                }
+                else
+                {
+                    izvodjac = new Muzicar
+                    {
+                        Id = (int)reader["IzvođačId"],
+                        Email = (string)reader["IzvođačEmail"],
+                        Ime = (string)reader["Ime"],
+                        Prezime = (string)reader["Prezime"],
+                        Pol = reader["Pol"].ToString().Trim() == "M" ? Pol.M : Pol.Ž
+                    };
+                }
+
+                Koncert k = new Koncert
+                {
+                    izvodjac = izvodjac,
+                    lokacija = l,
+                    Naziv = (string)reader["NazivKoncerta"],
+                    Datum = (DateTime)reader["Datum"],
+                    VremeTrajanja = (int)reader["VremeTrajanja"],
+                    Status = Enum.Parse<Status>((string)reader["Status"]),
+                    VremePocetka = (TimeSpan)reader["VremePočetka"]
+                };
+
+                koncerti.Add(k);
+            }
+
+            return koncerti;
+        }
+        public void DeleteKoncert(object izvodjacId, int lokacijaId, DateTime datum)
+        {
+            SqlCommand command = connection.CreateCommand();
+            command.CommandText = "sp_Koncert_Delete";
+            command.CommandType = CommandType.StoredProcedure;
+
+            command.Parameters.AddWithValue("@IzvođačId", izvodjacId);
+            command.Parameters.AddWithValue("@LokacijaId", lokacijaId);
+            command.Parameters.AddWithValue("@Datum", datum);
+
+            command.ExecuteNonQuery();
+        }
+        public void DodajKoncert(Koncert koncert)
+        {
+            SqlCommand command = connection.CreateCommand();
+            command.CommandText = "sp_Koncert_Insert";
+            command.CommandType = CommandType.StoredProcedure;
+
+            command.Parameters.AddWithValue("@IzvođačId", koncert.izvodjac.Id);
+            command.Parameters.AddWithValue("@LokacijaId", koncert.lokacija.LokacijaId);
+            command.Parameters.AddWithValue("@Datum", koncert.Datum.Date);
+            command.Parameters.AddWithValue("@Status", koncert.Status.ToString());
+            command.Parameters.AddWithValue("@VremeTrajanja", koncert.VremeTrajanja);
+            command.Parameters.AddWithValue("@VremePočetka", koncert.VremePocetka);
+            command.Parameters.AddWithValue("@Naziv", koncert.Naziv);
+
+            command.ExecuteNonQuery();
+        }
+
+        public List<Lokacija> GetAllLokacije()
+        {
+            List<Lokacija> lokacije = new List<Lokacija>();
+
+            SqlCommand command = connection.CreateCommand();
+            command.CommandText = "sp_Lokacija_GetAll";
+            command.CommandType = CommandType.StoredProcedure;
+
+            using SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                Grad g = new Grad
+                {
+                    Id = (int)reader["GradId"],
+                    Naziv = (string)reader["GradNaziv"]
+                };
+
+                Lokacija l = new Lokacija
+                {
+                    LokacijaId = (int)reader["Id"],
+                    Naziv = (string)reader["Naziv"],
+                    Adresa = (string)reader["Adresa"],
+                    Kapacitet = (int)reader["Kapacitet"],
+                    grad = g
+                };
+
+                lokacije.Add(l);
+            }
+
+            return lokacije;
+        }
+        public List<Izvodjac> GetAllIzvodjaciPrikaz()
+        {
+            List<Izvodjac> izvodjaci = new List<Izvodjac>();
+
+            SqlCommand command = connection.CreateCommand();
+            command.CommandText = "sp_Izvođač_GetAllPrikaz";
+            command.CommandType = CommandType.StoredProcedure;
+
+            using SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                Izvodjac izvodjac;
+
+                if (reader["NazivBenda"] != DBNull.Value)
+                {
+                    izvodjac = new Bend
+                    {
+                        Id = (int)reader["Id"],
+                        Email = (string)reader["Email"],
+                        Naziv = (string)reader["NazivBenda"],
+                        BrojČlanova = (int)reader["BrojČlanova"]
+                    };
+                }
+                else
+                {
+                    izvodjac = new Muzicar
+                    {
+                        Id = (int)reader["Id"],
+                        Email = (string)reader["Email"],
+                        Ime = (string)reader["Ime"],
+                        Prezime = (string)reader["Prezime"],
+                        Pol = reader["Pol"].ToString().Trim() == "M" ? Pol.M : Pol.Ž
+                    };
+                }
+
+                izvodjaci.Add(izvodjac);
+            }
+
+            return izvodjaci;
+        }
+
+        public void UpdateKoncert(Koncert stari, Koncert novi)
+        {
+            SqlCommand command = connection.CreateCommand();
+            command.CommandText = "sp_Koncert_Update";
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@IzvođačId", stari.izvodjac.Id);
+            command.Parameters.AddWithValue("@LokacijaId", stari.lokacija.LokacijaId);
+            command.Parameters.AddWithValue("@StariDatum", stari.Datum.Date);
+
+            command.Parameters.AddWithValue("@NoviDatum", novi.Datum);
+
+            command.Parameters.AddWithValue("@Status", novi.Status.ToString());
+            command.Parameters.AddWithValue("@VremeTrajanja", novi.VremeTrajanja);
+            command.Parameters.Add("@VremePočetka", SqlDbType.Time).Value = novi.VremePocetka;
+            command.Parameters.AddWithValue("@Naziv", novi.Naziv);
+
+            command.ExecuteNonQuery();
+        }
+
+
+        #endregion
+
     }
 }

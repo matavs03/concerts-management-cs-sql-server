@@ -1,6 +1,7 @@
 ﻿using BrokerBazePodataka;
 using Domen;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace Kontroler
@@ -188,5 +189,43 @@ namespace Kontroler
         }
 
         #endregion
+
+
+        #region Koncert
+
+        public List<Koncert> VratiSveKoncerte()
+        {
+            return ExecuteWithConnection(() => Broker.Instance.GetAllKoncerti());
+        }
+
+        public void ObrisiKoncert(int izvodjacId, int lokacijaId, DateTime datum)
+        {
+            ExecuteWithConnection(() => Broker.Instance.DeleteKoncert(izvodjacId, lokacijaId, datum));
+        }
+
+        
+        public void SacuvajKoncert(Koncert koncert)
+        {
+            ExecuteWithConnection(() => Broker.Instance.DodajKoncert(koncert));
+        }
+
+        public List<Lokacija> VratiSveLokacije()
+        {
+            return ExecuteWithConnection(() => Broker.Instance.GetAllLokacije());
+        }
+        public List<Izvodjac> VratiSveIzvodjacePrikaz()
+        {
+            return ExecuteWithConnection(() => Broker.Instance.GetAllIzvodjaciPrikaz());
+        }
+
+        public void IzmeniKoncert(Koncert koncertZaIzmenu, Koncert noviKoncert)
+        {
+            ExecuteWithConnection(() => Broker.Instance.UpdateKoncert(koncertZaIzmenu, noviKoncert));
+        }
+
+        #endregion
+
     }
+   
+
 }
