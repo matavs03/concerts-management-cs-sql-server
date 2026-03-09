@@ -52,6 +52,8 @@ namespace Forme
 
             dataGridView1.Columns["izvodjac"].HeaderText = "Izvođač";
             dataGridView1.Columns["lokacija"].HeaderText = "Lokacija";
+            dataGridView1.Columns["VremePocetka"].HeaderText = "Vreme početka";
+            dataGridView1.Columns["VremeTrajanja"].HeaderText = "Vreme trajanja";
 
 
             dataGridView1.AllowUserToAddRows = false;
