@@ -114,7 +114,7 @@ namespace Forme
                     VremeTrajanja = (int)numericUpDownTrajanje.Value,
                     Status = status
                 };
-
+               
                 Kontroler.Kontroler.Instance.SacuvajKoncert(koncert);
 
                 MessageBox.Show("Koncert je uspešno dodat.");

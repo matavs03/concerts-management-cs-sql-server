@@ -656,30 +656,30 @@ namespace BrokerBazePodataka
         {
             List<Lokacija> lokacije = new List<Lokacija>();
 
-            SqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "sp_Lokacija_GetAll";
-            cmd.CommandType = CommandType.StoredProcedure;
+            SqlCommand command = connection.CreateCommand();
+            command.CommandText = "sp_Lokacija_GetAll";
+            command.CommandType = CommandType.StoredProcedure;
 
-            using SqlDataReader reader = cmd.ExecuteReader();
+            using SqlDataReader reader = command.ExecuteReader();
 
             while (reader.Read())
             {
                 Grad g = new Grad
                 {
-                    Id = reader.GetInt32(4),
-                    Naziv = reader.GetString(5)
+                    Id = (int)reader["GradId"],
+                    Naziv = (string)reader["GradNaziv"]
                 };
 
-                Lokacija lokacija = new Lokacija
+                Lokacija l = new Lokacija
                 {
-                    id = reader.GetInt32(0),
-                    Naziv = reader.GetString(1),
-                    Adresa = reader.GetString(2),
-                    Kapacitet = reader.GetInt32(3),
+                    LokacijaId = (int)reader["Id"],
+                    Naziv = (string)reader["Naziv"],
+                    Adresa = (string)reader["Adresa"],
+                    Kapacitet = (int)reader["Kapacitet"],
                     grad = g
                 };
 
-                lokacije.Add(lokacija);
+                lokacije.Add(l);
             }
 
             return lokacije;
