@@ -784,38 +784,7 @@ namespace BrokerBazePodataka
             command.ExecuteNonQuery();
         }
 
-        public List<Lokacija> GetAllLokacije()
-        {
-            List<Lokacija> lokacije = new List<Lokacija>();
-
-            SqlCommand command = connection.CreateCommand();
-            command.CommandText = "sp_Lokacija_GetAll";
-            command.CommandType = CommandType.StoredProcedure;
-
-            using SqlDataReader reader = command.ExecuteReader();
-
-            while (reader.Read())
-            {
-                Grad g = new Grad
-                {
-                    Id = (int)reader["GradId"],
-                    Naziv = (string)reader["GradNaziv"]
-                };
-
-                Lokacija l = new Lokacija
-                {
-                    LokacijaId = (int)reader["Id"],
-                    Naziv = (string)reader["Naziv"],
-                    Adresa = (string)reader["Adresa"],
-                    Kapacitet = (int)reader["Kapacitet"],
-                    grad = g
-                };
-
-                lokacije.Add(l);
-            }
-
-            return lokacije;
-        }
+       
         public List<Izvodjac> GetAllIzvodjaciPrikaz()
         {
             List<Izvodjac> izvodjaci = new List<Izvodjac>();
