@@ -15,7 +15,7 @@ namespace Domen
 
         public override string? ToString()
         {
-            return $"{Id} {Naziv}";
+            return $"{Naziv}";
         }
     }
 }

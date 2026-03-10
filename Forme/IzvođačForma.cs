@@ -131,7 +131,27 @@ namespace Forme
 
         private void btnDodaj_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Ovde ćemo povezati modalnu formu za dodavanje.");
+            try
+            {
+                using (IzborTipaIzvodjacaForma izborForma = new IzborTipaIzvodjacaForma())
+                {
+                    if (izborForma.ShowDialog() != DialogResult.OK || izborForma.IzabraniTip == null)
+                        return;
+
+                    using (IzvođačDetaljiForma detaljiForma = new IzvođačDetaljiForma(izborForma.IzabraniTip.Value))
+                    {
+                        if (detaljiForma.ShowDialog() == DialogResult.OK)
+                        {
+                            UcitajIzvodjace();
+                            OcistiTabeluZanrova();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Greška pri dodavanju izvođača: " + ex.Message);
+            }
         }
 
         private void btnIzmeni_Click(object sender, EventArgs e)
@@ -147,7 +167,20 @@ namespace Forme
                 IzvodjacPrikaz selektovanRed = (IzvodjacPrikaz)dgvIzvodjaci.CurrentRow.DataBoundItem;
                 Izvodjac selektovan = selektovanRed.OriginalniObjekat;
 
-                MessageBox.Show($"Ovde ćemo povezati modalnu formu za izmenu izvođača '{selektovanRed.Naziv}'.");
+                selektovan.Zanrovi = Kontroler.Kontroler.Instance.VratiZanroveZaIzvodjaca(selektovan.Id);
+
+                TipIzvodjaca tip = selektovan is Muzicar
+                    ? TipIzvodjaca.Muzicar
+                    : TipIzvodjaca.Bend;
+
+                using (IzvođačDetaljiForma forma = new IzvođačDetaljiForma(tip, selektovan))
+                {
+                    if (forma.ShowDialog() == DialogResult.OK)
+                    {
+                        UcitajIzvodjace();
+                        OcistiTabeluZanrova();
+                    }
+                }
             }
             catch (Exception ex)
             {
