@@ -35,5 +35,11 @@
             KoncertForma forma = new KoncertForma();
             forma.ShowDialog();
         }
+
+        private void lokacijaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LokacijaForma forma = new LokacijaForma();
+            forma.ShowDialog();
+        }
     }
 }

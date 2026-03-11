@@ -264,6 +264,34 @@ namespace Kontroler
             ExecuteWithConnection(() => Broker.Instance.InsertKarta(karta));
         }
         #endregion
+
+        #region Lokacija
+
+        public int SacuvajLokaciju(Lokacija lokacija)
+        {
+            return ExecuteWithConnection(() => Broker.Instance.InsertLokacija(lokacija));
+        }
+
+        public void IzmeniLokaciju(Lokacija lokacija)
+        {
+            ExecuteWithConnection(() => Broker.Instance.UpdateLokacija(lokacija));
+        }
+
+        public void ObrisiLokaciju(int id)
+        {
+            ExecuteWithConnection(() => Broker.Instance.DeleteLokacija(id));
+        }
+
+        public Lokacija VratiLokacijuPoId(int id)
+        {
+            return ExecuteWithConnection(() => Broker.Instance.GetLokacijaById(id));
+        }
+
+   
+
+        #endregion
+
+
     }
 
 

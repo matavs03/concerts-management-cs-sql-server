@@ -672,6 +672,7 @@ namespace BrokerBazePodataka
 
                 Lokacija l = new Lokacija
                 {
+                    id = (int)reader["Id"],
                     LokacijaId = (int)reader["Id"],
                     Naziv = (string)reader["Naziv"],
                     Adresa = (string)reader["Adresa"],
