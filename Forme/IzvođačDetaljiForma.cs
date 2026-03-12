@@ -2,8 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace Forme
 {
@@ -89,7 +89,7 @@ namespace Forme
                 lblBrojClanova.Visible = true;
                 numBrojClanova.Visible = true;
 
-                numBrojClanova.Minimum = 1;
+                numBrojClanova.Minimum = 2;
                 numBrojClanova.Maximum = 100;
             }
         }
@@ -132,7 +132,6 @@ namespace Forme
             for (int i = 0; i < clbZanrovi.Items.Count; i++)
             {
                 Zanr zanrIzListe = (Zanr)clbZanrovi.Items[i];
-
                 bool trebaCekirati = izvodjacZaIzmenu.Zanrovi.Any(z => z.Id == zanrIzListe.Id);
 
                 if (trebaCekirati)
@@ -159,23 +158,46 @@ namespace Forme
 
         private bool ValidirajUnos()
         {
-            if (string.IsNullOrWhiteSpace(txtEmail.Text))
+            string email = txtEmail.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(email))
             {
                 MessageBox.Show("Email je obavezan.");
                 return false;
             }
 
+            if (!ValidanEmail(email))
+            {
+                MessageBox.Show("Email mora biti u formatu primer@domen.xx");
+                return false;
+            }
+
             if (tipIzvodjaca == TipIzvodjaca.Muzicar)
             {
-                if (string.IsNullOrWhiteSpace(txtIme.Text))
+                string ime = txtIme.Text.Trim();
+                string prezime = txtPrezime.Text.Trim();
+
+                if (string.IsNullOrWhiteSpace(ime))
                 {
                     MessageBox.Show("Ime je obavezno.");
                     return false;
                 }
 
-                if (string.IsNullOrWhiteSpace(txtPrezime.Text))
+                if (string.IsNullOrWhiteSpace(prezime))
                 {
                     MessageBox.Show("Prezime je obavezno.");
+                    return false;
+                }
+
+                if (!ValidnoImeIliPrezime(ime))
+                {
+                    MessageBox.Show("Ime mora početi velikim slovom, a ostala slova moraju biti mala.");
+                    return false;
+                }
+
+                if (!ValidnoImeIliPrezime(prezime))
+                {
+                    MessageBox.Show("Prezime mora početi velikim slovom, a ostala slova moraju biti mala.");
                     return false;
                 }
 
@@ -187,20 +209,32 @@ namespace Forme
             }
             else
             {
-                if (string.IsNullOrWhiteSpace(txtNaziv.Text))
+                string naziv = txtNaziv.Text.Trim();
+
+                if (string.IsNullOrWhiteSpace(naziv))
                 {
                     MessageBox.Show("Naziv benda je obavezan.");
                     return false;
                 }
 
-                if (numBrojClanova.Value < 1)
+                if (numBrojClanova.Value < 2)
                 {
-                    MessageBox.Show("Broj članova mora biti veći od 0.");
+                    MessageBox.Show("Bend mora imati najmanje 2 člana.");
                     return false;
                 }
             }
 
             return true;
+        }
+
+        private bool ValidanEmail(string email)
+        {
+            return Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[A-Za-z]{2,}$");
+        }
+
+        private bool ValidnoImeIliPrezime(string tekst)
+        {
+            return Regex.IsMatch(tekst, @"^[A-ZŠĐČĆŽ][a-zšđčćž]+$");
         }
 
         private void btnSacuvaj_Click(object sender, EventArgs e)
@@ -285,7 +319,6 @@ namespace Forme
                 };
 
                 Kontroler.Kontroler.Instance.IzmeniMuzicara(muzicar);
-
                 Kontroler.Kontroler.Instance.ObrisiSveZanroveZaIzvodjaca(muzicar.Id);
 
                 foreach (Zanr zanr in muzicar.Zanrovi)
@@ -307,7 +340,6 @@ namespace Forme
                 };
 
                 Kontroler.Kontroler.Instance.IzmeniBend(bend);
-
                 Kontroler.Kontroler.Instance.ObrisiSveZanroveZaIzvodjaca(bend.Id);
 
                 foreach (Zanr zanr in bend.Zanrovi)
