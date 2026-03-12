@@ -41,24 +41,26 @@
             // lblNaziv
             // 
             lblNaziv.AutoSize = true;
-            lblNaziv.Location = new Point(30, 43);
+            lblNaziv.Location = new Point(34, 57);
             lblNaziv.Name = "lblNaziv";
-            lblNaziv.Size = new Size(70, 15);
+            lblNaziv.Size = new Size(92, 20);
             lblNaziv.TabIndex = 7;
-            lblNaziv.Text = "Naziv žanra:";
+            lblNaziv.Text = "Naziv grada:";
             // 
             // txtNaziv
             // 
-            txtNaziv.Location = new Point(130, 40);
+            txtNaziv.Location = new Point(149, 53);
+            txtNaziv.Margin = new Padding(3, 4, 3, 4);
             txtNaziv.Name = "txtNaziv";
-            txtNaziv.Size = new Size(200, 23);
+            txtNaziv.Size = new Size(228, 27);
             txtNaziv.TabIndex = 8;
             // 
             // btnDodaj
             // 
-            btnDodaj.Location = new Point(350, 38);
+            btnDodaj.Location = new Point(400, 51);
+            btnDodaj.Margin = new Padding(3, 4, 3, 4);
             btnDodaj.Name = "btnDodaj";
-            btnDodaj.Size = new Size(90, 30);
+            btnDodaj.Size = new Size(103, 40);
             btnDodaj.TabIndex = 9;
             btnDodaj.Text = "Dodaj";
             btnDodaj.UseVisualStyleBackColor = true;
@@ -66,9 +68,10 @@
             // 
             // btnIzmeni
             // 
-            btnIzmeni.Location = new Point(450, 38);
+            btnIzmeni.Location = new Point(514, 51);
+            btnIzmeni.Margin = new Padding(3, 4, 3, 4);
             btnIzmeni.Name = "btnIzmeni";
-            btnIzmeni.Size = new Size(90, 30);
+            btnIzmeni.Size = new Size(103, 40);
             btnIzmeni.TabIndex = 10;
             btnIzmeni.Text = "Izmeni";
             btnIzmeni.UseVisualStyleBackColor = true;
@@ -76,9 +79,10 @@
             // 
             // btnObrisi
             // 
-            btnObrisi.Location = new Point(550, 38);
+            btnObrisi.Location = new Point(629, 51);
+            btnObrisi.Margin = new Padding(3, 4, 3, 4);
             btnObrisi.Name = "btnObrisi";
-            btnObrisi.Size = new Size(90, 30);
+            btnObrisi.Size = new Size(103, 40);
             btnObrisi.TabIndex = 11;
             btnObrisi.Text = "Obriši";
             btnObrisi.UseVisualStyleBackColor = true;
@@ -86,9 +90,10 @@
             // 
             // btnOsvezi
             // 
-            btnOsvezi.Location = new Point(650, 38);
+            btnOsvezi.Location = new Point(743, 51);
+            btnOsvezi.Margin = new Padding(3, 4, 3, 4);
             btnOsvezi.Name = "btnOsvezi";
-            btnOsvezi.Size = new Size(90, 30);
+            btnOsvezi.Size = new Size(103, 40);
             btnOsvezi.TabIndex = 12;
             btnOsvezi.Text = "Osveži";
             btnOsvezi.UseVisualStyleBackColor = true;
@@ -97,19 +102,24 @@
             // dgvZanrovi
             // 
             dgvZanrovi.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvZanrovi.Location = new Point(30, 93);
+            dgvZanrovi.ColumnHeadersHeight = 29;
+            dgvZanrovi.Location = new Point(34, 124);
+            dgvZanrovi.Margin = new Padding(3, 4, 3, 4);
             dgvZanrovi.MultiSelect = false;
             dgvZanrovi.Name = "dgvZanrovi";
             dgvZanrovi.ReadOnly = true;
+            dgvZanrovi.RowHeadersWidth = 51;
             dgvZanrovi.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvZanrovi.Size = new Size(740, 320);
+            dgvZanrovi.Size = new Size(846, 427);
             dgvZanrovi.TabIndex = 13;
+            dgvZanrovi.CellClick += dgvZanrovi_CellClick;
+            dgvZanrovi.CellContentClick += dgvZanrovi_CellClick;
             // 
             // GradForma
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(914, 600);
             Controls.Add(lblNaziv);
             Controls.Add(txtNaziv);
             Controls.Add(btnDodaj);
@@ -117,6 +127,7 @@
             Controls.Add(btnObrisi);
             Controls.Add(btnOsvezi);
             Controls.Add(dgvZanrovi);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "GradForma";
             Text = "GradForma";
             Load += GradForma_Load;
