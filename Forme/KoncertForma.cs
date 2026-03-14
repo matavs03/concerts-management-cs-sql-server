@@ -28,12 +28,14 @@ namespace Forme
         {
             List<Koncert> koncerti = Kontroler.Kontroler.Instance.VratiSveKoncerte();
 
+
             dataGridView1.DataSource = null;
             dataGridView1.AutoGenerateColumns = true;
             dataGridView1.DataSource = koncerti;
             dataGridView1.ReadOnly = true;
             dataGridView1.Columns["VremePocetka"].DefaultCellStyle.Format = @"hh\:mm";
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            
             dataGridView1.Columns["Naziv"].DisplayIndex = 0;
             dataGridView1.Columns["izvodjac"].DisplayIndex = 1;
             dataGridView1.Columns["Datum"].DisplayIndex = 2;
@@ -41,6 +43,7 @@ namespace Forme
             dataGridView1.Columns["Status"].DisplayIndex = 4;
             dataGridView1.Columns["VremePocetka"].DisplayIndex = 5;
             dataGridView1.Columns["VremeTrajanja"].DisplayIndex = 6;
+            
 
             dataGridView1.Columns["Naziv"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView1.Columns["izvodjac"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;

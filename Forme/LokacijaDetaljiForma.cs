@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -98,14 +99,32 @@ namespace Forme
             {
                 if (!ValidirajUnos()) return;
 
+                string naziv = txtNaziv.Text.Trim();
+                string adresa = txtAdresa.Text.Trim();
+
+                Regex nazivRegex = new Regex(@"^[A-Z][a-zA-Z]*(?: [a-zA-Z]+)*$");
+                Regex adresaRegex = new Regex(@"^[A-Z][a-z]+(?:\s[A-Z]?[a-z]+)*\s[0-9]+(?:/[0-9]+)?$");
+
+                if (!nazivRegex.IsMatch(naziv))
+                {
+                    MessageBox.Show("Naziv mora početi velikim slovom");
+                    return;
+                }
+
+                if (!adresaRegex.IsMatch(adresa))
+                {
+                    MessageBox.Show("Adresa mora početi velikim slovom, sadržati naziv ulice i broj");
+                    return;
+                }
+
                 Grad izabraniGrad = (Grad)cmbGrad.SelectedItem;
 
                 if (rezim == RezimForme.Dodavanje)
                 {
                     Lokacija novaLokacija = new Lokacija
                     {
-                        Naziv = txtNaziv.Text.Trim(),
-                        Adresa = txtAdresa.Text.Trim(),
+                        Naziv = naziv,
+                        Adresa = adresa,
                         Kapacitet = (int)numKapacitet.Value,
                         grad = izabraniGrad
                     };
@@ -115,8 +134,8 @@ namespace Forme
                 }
                 else
                 {
-                    lokacijaZaIzmenu.Naziv = txtNaziv.Text.Trim();
-                    lokacijaZaIzmenu.Adresa = txtAdresa.Text.Trim();
+                    lokacijaZaIzmenu.Naziv = naziv;
+                    lokacijaZaIzmenu.Adresa = adresa;
                     lokacijaZaIzmenu.Kapacitet = (int)numKapacitet.Value;
                     lokacijaZaIzmenu.grad = izabraniGrad;
 

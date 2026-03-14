@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -48,15 +49,23 @@ namespace Forme
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(txtNaziv.Text))
+                string naziv = txtNaziv.Text.Trim();
+
+                if (string.IsNullOrWhiteSpace(naziv))
                 {
                     MessageBox.Show("Unesite naziv grada.");
                     return;
                 }
 
+                if (!Regex.IsMatch(naziv, @"^[A-Z][a-zA-Z]*(?: [A-Za-z]+)*$"))
+                {
+                    MessageBox.Show("Naziv grada mora početi velikim slovom.");
+                    return;
+                }
+
                 Grad g = new Grad
                 {
-                    Naziv = txtNaziv.Text.Trim()
+                    Naziv = naziv
                 };
 
                 Kontroler.Kontroler.Instance.SacuvajGrad(g);
@@ -81,14 +90,22 @@ namespace Forme
                     return;
                 }
 
-                if (string.IsNullOrWhiteSpace(txtNaziv.Text))
+                string naziv = txtNaziv.Text.Trim();
+
+                if (string.IsNullOrWhiteSpace(naziv))
                 {
                     MessageBox.Show("Unesite naziv grada.");
                     return;
                 }
 
+                if (!Regex.IsMatch(naziv, @"^[A-Z][a-zA-Z]*(?: [A-Za-z]+)*$"))
+                {
+                    MessageBox.Show("Naziv grada mora početi velikim slovom.");
+                    return;
+                }
+
                 Grad selektovan = (Grad)dgvZanrovi.CurrentRow.DataBoundItem;
-                selektovan.Naziv = txtNaziv.Text.Trim();
+                selektovan.Naziv = naziv;
 
                 Kontroler.Kontroler.Instance.IzmeniGrad(selektovan);
                 MessageBox.Show("Uspešno izmenjen grad.");

@@ -94,11 +94,11 @@ namespace Forme
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(textBoxNaziv.Text))
-                {
-                    MessageBox.Show("Unesite naziv koncerta.");
-                    return;
-                }
+                //if (string.IsNullOrWhiteSpace(textBoxNaziv.Text))
+                //{
+                //    MessageBox.Show("Unesite naziv koncerta.");
+                //    return;
+                //}
 
                 Izvodjac izabraniIzvodjac = (Izvodjac)comboBoxIzvodjac.SelectedItem;
                 Lokacija izabranaLokacija = (Lokacija)comboBoxLokacija.SelectedItem;
