@@ -168,7 +168,7 @@ namespace Forme
 
             if (!ValidanEmail(email))
             {
-                MessageBox.Show("Email mora biti u formatu primer@domen.xx");
+                MessageBox.Show("Kontakt email izvođača mora imati format email adrese");
                 return false;
             }
 
@@ -191,15 +191,11 @@ namespace Forme
 
                 if (!ValidnoImeIliPrezime(ime))
                 {
-                    MessageBox.Show("Ime mora početi velikim slovom, a ostala slova moraju biti mala.");
+                    MessageBox.Show("Ime mora početi velikim slovom a sva ostala slova su mala");
                     return false;
                 }
 
-                if (!ValidnoImeIliPrezime(prezime))
-                {
-                    MessageBox.Show("Prezime mora početi velikim slovom, a ostala slova moraju biti mala.");
-                    return false;
-                }
+                
 
                 if (cmbPol.SelectedItem == null)
                 {
@@ -263,6 +259,8 @@ namespace Forme
 
         private void SacuvajNovi()
         {
+            
+
             if (tipIzvodjaca == TipIzvodjaca.Muzicar)
             {
                 Muzicar muzicar = new Muzicar
