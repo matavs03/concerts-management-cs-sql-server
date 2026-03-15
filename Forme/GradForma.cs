@@ -57,7 +57,7 @@ namespace Forme
                     return;
                 }
 
-                if (!Regex.IsMatch(naziv, @"^[A-Z][a-zA-Z]*(?: [A-Za-z]+)*$"))
+                if (!Regex.IsMatch(naziv, @"^[A-ZŠĐČĆŽ][a-zšđčćžA-ZŠĐČĆŽ]*(?: [A-ZŠĐČĆŽa-zšđčćž]+)*$"))
                 {
                     MessageBox.Show("Naziv grada mora početi velikim slovom.");
                     return;
@@ -98,7 +98,7 @@ namespace Forme
                     return;
                 }
 
-                if (!Regex.IsMatch(naziv, @"^[A-Z][a-zA-Z]*(?: [A-Za-z]+)*$"))
+                if (!Regex.IsMatch(naziv, @"^[A-ZŠĐČĆŽ][a-zšđčćžA-ZŠĐČĆŽ]*(?: [A-ZŠĐČĆŽa-zšđčćž]+)*$"))
                 {
                     MessageBox.Show("Naziv grada mora početi velikim slovom.");
                     return;

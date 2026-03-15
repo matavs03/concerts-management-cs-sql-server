@@ -102,8 +102,8 @@ namespace Forme
                 string naziv = txtNaziv.Text.Trim();
                 string adresa = txtAdresa.Text.Trim();
 
-                Regex nazivRegex = new Regex(@"^[A-Z][a-zA-Z]*(?: [a-zA-Z]+)*$");
-                Regex adresaRegex = new Regex(@"^[A-Z][a-z]+(?:\s[A-Z]?[a-z]+)*\s[0-9]+(?:/[0-9]+)?$");
+                Regex nazivRegex = new Regex(@"^\p{Lu}\p{L}*(?: \p{L}+)*$");
+                Regex adresaRegex = new Regex(@"^\p{Lu}\p{Ll}+(?:\s\p{Lu}?\p{Ll}+)*\s[0-9]+(?:/[0-9]+)?$");
 
                 if (!nazivRegex.IsMatch(naziv))
                 {
