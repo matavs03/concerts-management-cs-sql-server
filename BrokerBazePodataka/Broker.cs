@@ -59,7 +59,7 @@ namespace BrokerBazePodataka
         public int InsertZanr(Zanr zanr)
         {
             SqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "sp_Žanr_Insert";
+            cmd.CommandText = "Izvodjaci.Žanr_Insert";
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@Naziv", zanr.Naziv);
@@ -72,7 +72,7 @@ namespace BrokerBazePodataka
         public void UpdateZanr(Zanr zanr)
         {
             SqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "sp_Žanr_Update";
+            cmd.CommandText = "Izvodjaci.Žanr_Update";
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@Id", zanr.Id);
@@ -84,7 +84,7 @@ namespace BrokerBazePodataka
         public void DeleteZanr(int id)
         {
             SqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "sp_Žanr_Delete";
+            cmd.CommandText = "Izvodjaci.sp_Žanr_Delete";
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@Id", id);
@@ -95,7 +95,7 @@ namespace BrokerBazePodataka
         public Zanr GetZanrById(int id)
         {
             SqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "sp_Žanr_GetById";
+            cmd.CommandText = "Izvodjaci.Žanr_GetById";
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@Id", id);
@@ -120,7 +120,7 @@ namespace BrokerBazePodataka
             List<Zanr> zanrovi = new List<Zanr>();
 
             SqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "sp_Žanr_GetAll";
+            cmd.CommandText = "Izvodjaci.sp_Žanr_GetAll";
             cmd.CommandType = CommandType.StoredProcedure;
 
             using SqlDataReader reader = cmd.ExecuteReader();
@@ -146,7 +146,7 @@ namespace BrokerBazePodataka
         public int InsertIzvodjac(Izvodjac izvodjac)
         {
             SqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "sp_Izvođač_Insert";
+            cmd.CommandText = "Izvodjaci.Izvođač_Insert";
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@Email", izvodjac.Email);
@@ -159,7 +159,7 @@ namespace BrokerBazePodataka
         public void UpdateIzvodjac(Izvodjac izvodjac)
         {
             SqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "sp_Izvođač_Update";
+            cmd.CommandText = "Izvodjaci.Izvođač_Update";
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@Id", izvodjac.Id);
@@ -171,7 +171,7 @@ namespace BrokerBazePodataka
         public void DeleteIzvodjac(int id)
         {
             SqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "sp_Izvođač_Delete";
+            cmd.CommandText = "Izvodjaci.Izvođač_Delete";
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@Id", id);
@@ -182,7 +182,7 @@ namespace BrokerBazePodataka
         public Izvodjac GetIzvodjacById(int id)
         {
             SqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "sp_Izvođač_GetById";
+            cmd.CommandText = "Izvodjaci.Izvođač_GetById";
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@Id", id);
@@ -206,7 +206,7 @@ namespace BrokerBazePodataka
             List<Izvodjac> izvodjaci = new List<Izvodjac>();
 
             SqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "sp_Izvođač_GetAll";
+            cmd.CommandText = "Izvodjaci.Izvođač_GetAll";
             cmd.CommandType = CommandType.StoredProcedure;
 
             using SqlDataReader reader = cmd.ExecuteReader();
@@ -232,7 +232,7 @@ namespace BrokerBazePodataka
         public void InsertIzvodjacZanr(int izvodjacId, int zanrId)
         {
             SqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "sp_IzvođačŽanr_Insert";
+            cmd.CommandText = "Izvodjaci.IzvođačŽanr_Insert";
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@IzvođačId", izvodjacId);
@@ -244,7 +244,7 @@ namespace BrokerBazePodataka
         public void DeleteIzvodjacZanr(int izvodjacId, int zanrId)
         {
             SqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "sp_IzvođačŽanr_Delete";
+            cmd.CommandText = "Izvodjaci.IzvođačŽanr_Delete";
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@IzvođačId", izvodjacId);
@@ -256,7 +256,7 @@ namespace BrokerBazePodataka
         public void DeleteAllZanroviForIzvodjac(int izvodjacId)
         {
             SqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "sp_IzvođačŽanr_DeleteAllByIzvođačId";
+            cmd.CommandText = "Izvodjaci.IzvođačŽanr_DeleteAllByIzvođačId";
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@IzvođačId", izvodjacId);
@@ -269,7 +269,7 @@ namespace BrokerBazePodataka
             List<Zanr> zanrovi = new List<Zanr>();
 
             SqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "sp_IzvođačŽanr_GetByIzvođačId";
+            cmd.CommandText = "Izvodjaci.IzvođačŽanr_GetByIzvođačId";
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@IzvođačId", izvodjacId);
@@ -297,7 +297,7 @@ namespace BrokerBazePodataka
         public int InsertMuzicar(Muzicar muzicar)
         {
             SqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "sp_Muzičar_Insert";
+            cmd.CommandText = "Izvodjaci.Muzičar_Insert";
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@Email", muzicar.Email);
@@ -313,7 +313,7 @@ namespace BrokerBazePodataka
         public void UpdateMuzicar(Muzicar muzicar)
         {
             SqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "sp_Muzičar_Update";
+            cmd.CommandText = "Izvodjaci.Muzičar_Update"; // Ovde smo obrisali sp_
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@IzvođačId", muzicar.Id);
@@ -328,7 +328,7 @@ namespace BrokerBazePodataka
         public void DeleteMuzicar(int izvodjacId)
         {
             SqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "sp_Muzičar_Delete";
+            cmd.CommandText = "Izvodjaci.Muzičar_Delete";
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@IzvođačId", izvodjacId);
@@ -339,7 +339,7 @@ namespace BrokerBazePodataka
         public Muzicar GetMuzicarById(int izvodjacId)
         {
             SqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "sp_Muzičar_GetById";
+            cmd.CommandText = "Izvodjaci.Muzičar_GetById";
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@IzvođačId", izvodjacId);
@@ -368,7 +368,7 @@ namespace BrokerBazePodataka
             List<Muzicar> muzicari = new List<Muzicar>();
 
             SqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "sp_Muzičar_GetAll";
+            cmd.CommandText = "Izvodjaci.Muzičar_GetAll";
             cmd.CommandType = CommandType.StoredProcedure;
 
             using SqlDataReader reader = cmd.ExecuteReader();
@@ -397,7 +397,7 @@ namespace BrokerBazePodataka
         public int InsertBend(Bend bend)
         {
             SqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "sp_Bend_Insert";
+            cmd.CommandText = "Izvodjaci.Bend_Insert";
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@Email", bend.Email);
@@ -412,7 +412,7 @@ namespace BrokerBazePodataka
         public void UpdateBend(Bend bend)
         {
             SqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "sp_Bend_Update";
+            cmd.CommandText = "Izvodjaci.Bend_Update";
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@IzvođačId", bend.Id);
@@ -426,7 +426,7 @@ namespace BrokerBazePodataka
         public void DeleteBend(int izvodjacId)
         {
             SqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "sp_Bend_Delete";
+            cmd.CommandText = "Izvodjaci.Bend_Delete";
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@IzvođačId", izvodjacId);
@@ -437,7 +437,7 @@ namespace BrokerBazePodataka
         public Bend GetBendById(int izvodjacId)
         {
             SqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "sp_Bend_GetById";
+            cmd.CommandText = "Izvodjaci.Bend_GetById";
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@IzvođačId", izvodjacId);
@@ -465,7 +465,7 @@ namespace BrokerBazePodataka
             List<Bend> bendovi = new List<Bend>();
 
             SqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "sp_Bend_GetAll";
+            cmd.CommandText = "Izvodjaci.Bend_GetAll";
             cmd.CommandType = CommandType.StoredProcedure;
 
             using SqlDataReader reader = cmd.ExecuteReader();
@@ -493,7 +493,7 @@ namespace BrokerBazePodataka
         public int InsertGrad(Grad grad)
         {
             SqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "sp_Grad_Insert";
+            cmd.CommandText = "Lokacije.Grad_Insert";
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@Naziv", grad.Naziv);
@@ -506,7 +506,7 @@ namespace BrokerBazePodataka
         public void UpdateGrad(Grad grad)
         {
             SqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "sp_Grad_Update";
+            cmd.CommandText = "Lokacije.Grad_Update";
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@Id", grad.Id);
@@ -518,7 +518,7 @@ namespace BrokerBazePodataka
         public void DeleteGrad(int id)
         {
             SqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "sp_Grad_Delete";
+            cmd.CommandText = "Lokacije.Grad_Delete";
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@Id", id);
@@ -529,7 +529,7 @@ namespace BrokerBazePodataka
         public Grad GetGradById(int id)
         {
             SqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "sp_Grad_GetById";
+            cmd.CommandText = "Lokacije.Grad_GetById";
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@Id", id);
@@ -553,7 +553,7 @@ namespace BrokerBazePodataka
             List<Grad> gradovi = new List<Grad>();
 
             SqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "sp_Grad_GetAll";
+            cmd.CommandText = "Lokacije.Grad_GetAll";
             cmd.CommandType = CommandType.StoredProcedure;
 
             using SqlDataReader reader = cmd.ExecuteReader();
@@ -579,7 +579,7 @@ namespace BrokerBazePodataka
         public int InsertLokacija(Lokacija lokacija)
         {
             SqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "sp_Lokacija_Insert";
+            cmd.CommandText = "Lokacije.sp_Lokacija_Insert";
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@Naziv", lokacija.Naziv);
@@ -596,7 +596,7 @@ namespace BrokerBazePodataka
         public void UpdateLokacija(Lokacija lokacija)
         {
             SqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "sp_Lokacija_Update";
+            cmd.CommandText = "Lokacije.Lokacija_Update";
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@Id", lokacija.id);
@@ -611,7 +611,7 @@ namespace BrokerBazePodataka
         public void DeleteLokacija(int id)
         {
             SqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "sp_Lokacija_Delete";
+            cmd.CommandText = "Lokacije.Lokacija_Delete";
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@Id", id);
@@ -622,7 +622,7 @@ namespace BrokerBazePodataka
         public Lokacija GetLokacijaById(int id)
         {
             SqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "sp_Lokacija_GetById";
+            cmd.CommandText = "Lokacije.sp_Lokacija_GetById";
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@Id", id);
@@ -657,7 +657,7 @@ namespace BrokerBazePodataka
             List<Lokacija> lokacije = new List<Lokacija>();
 
             SqlCommand command = connection.CreateCommand();
-            command.CommandText = "sp_Lokacija_GetAll";
+            command.CommandText = "Lokacije.Lokacija_GetAll";
             command.CommandType = CommandType.StoredProcedure;
 
             using SqlDataReader reader = command.ExecuteReader();
@@ -694,7 +694,7 @@ namespace BrokerBazePodataka
             List<Koncert> koncerti = new List<Koncert>();
 
             SqlCommand command = connection.CreateCommand();
-            command.CommandText = "sp_Koncert_GetAllPrikaz";
+            command.CommandText = "Prodaja.Koncert_GetAllPrikaz";
             command.CommandType = CommandType.StoredProcedure;
 
             using SqlDataReader reader = command.ExecuteReader();
@@ -759,7 +759,7 @@ namespace BrokerBazePodataka
         public void DeleteKoncert(object izvodjacId, int lokacijaId, DateTime datum)
         {
             SqlCommand command = connection.CreateCommand();
-            command.CommandText = "sp_Koncert_Delete";
+            command.CommandText = "Prodaja.Koncert_Delete";
             command.CommandType = CommandType.StoredProcedure;
 
             command.Parameters.AddWithValue("@IzvođačId", izvodjacId);
@@ -771,7 +771,7 @@ namespace BrokerBazePodataka
         public void DodajKoncert(Koncert koncert)
         {
             SqlCommand command = connection.CreateCommand();
-            command.CommandText = "sp_Koncert_Insert";
+            command.CommandText = "Prodaja.Koncert_Insert";
             command.CommandType = CommandType.StoredProcedure;
 
             command.Parameters.AddWithValue("@IzvođačId", koncert.izvodjac.Id);
@@ -785,13 +785,13 @@ namespace BrokerBazePodataka
             command.ExecuteNonQuery();
         }
 
-       
+
         public List<Izvodjac> GetAllIzvodjaciPrikaz()
         {
             List<Izvodjac> izvodjaci = new List<Izvodjac>();
 
             SqlCommand command = connection.CreateCommand();
-            command.CommandText = "sp_Izvođač_GetAllPrikaz";
+            command.CommandText = "Izvodjaci.Izvođač_GetAllPrikaz";
             command.CommandType = CommandType.StoredProcedure;
 
             using SqlDataReader reader = command.ExecuteReader();
@@ -831,7 +831,7 @@ namespace BrokerBazePodataka
         public void UpdateKoncert(Koncert stari, Koncert novi)
         {
             SqlCommand command = connection.CreateCommand();
-            command.CommandText = "sp_Koncert_Update";
+            command.CommandText = "Prodaja.Koncert_Update";
             command.CommandType = CommandType.StoredProcedure;
             command.Parameters.AddWithValue("@IzvođačId", stari.izvodjac.Id);
             command.Parameters.AddWithValue("@LokacijaId", stari.lokacija.LokacijaId);
@@ -855,7 +855,7 @@ namespace BrokerBazePodataka
         public void InsertKarta(Karta karta)
         {
             SqlCommand command = connection.CreateCommand();
-            command.CommandText = "sp_Karta_Insert";
+            command.CommandText = "Prodaja.Karta_Insert";
             command.CommandType = CommandType.StoredProcedure;
 
             command.Parameters.AddWithValue("@IzvođačId", karta.Koncert.izvodjac.Id);

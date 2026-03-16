@@ -40,30 +40,30 @@
             // labelPretraga
             // 
             labelPretraga.AutoSize = true;
-            labelPretraga.Location = new Point(12, 32);
+            labelPretraga.Location = new Point(10, 26);
             labelPretraga.Margin = new Padding(2, 0, 2, 0);
             labelPretraga.Name = "labelPretraga";
-            labelPretraga.Size = new Size(149, 25);
+            labelPretraga.Size = new Size(67, 20);
             labelPretraga.TabIndex = 1;
-            labelPretraga.Text = "Pretrazite koncert";
+            labelPretraga.Text = "Koncerti:";
             labelPretraga.Click += label1_Click;
             // 
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(26, 92);
+            dataGridView1.Location = new Point(21, 74);
             dataGridView1.Margin = new Padding(2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(1047, 289);
+            dataGridView1.Size = new Size(910, 231);
             dataGridView1.TabIndex = 4;
             // 
             // buttonKupiKartu
             // 
-            buttonKupiKartu.Location = new Point(927, 428);
+            buttonKupiKartu.Location = new Point(841, 345);
             buttonKupiKartu.Margin = new Padding(2);
             buttonKupiKartu.Name = "buttonKupiKartu";
-            buttonKupiKartu.Size = new Size(112, 34);
+            buttonKupiKartu.Size = new Size(90, 27);
             buttonKupiKartu.TabIndex = 5;
             buttonKupiKartu.Text = "Kupi kartu";
             buttonKupiKartu.UseVisualStyleBackColor = true;
@@ -71,10 +71,10 @@
             // 
             // buttonIzmeni
             // 
-            buttonIzmeni.Location = new Point(428, 29);
+            buttonIzmeni.Location = new Point(342, 23);
             buttonIzmeni.Margin = new Padding(2);
             buttonIzmeni.Name = "buttonIzmeni";
-            buttonIzmeni.Size = new Size(112, 34);
+            buttonIzmeni.Size = new Size(90, 27);
             buttonIzmeni.TabIndex = 6;
             buttonIzmeni.Text = "Izmeni";
             buttonIzmeni.UseVisualStyleBackColor = true;
@@ -82,21 +82,21 @@
             // 
             // buttonObrisi
             // 
-            buttonObrisi.Location = new Point(565, 29);
+            buttonObrisi.Location = new Point(452, 23);
             buttonObrisi.Margin = new Padding(2);
             buttonObrisi.Name = "buttonObrisi";
-            buttonObrisi.Size = new Size(112, 34);
+            buttonObrisi.Size = new Size(90, 27);
             buttonObrisi.TabIndex = 7;
-            buttonObrisi.Text = "Obrisi";
+            buttonObrisi.Text = "Obriši";
             buttonObrisi.UseVisualStyleBackColor = true;
             buttonObrisi.Click += buttonObrisi_Click;
             // 
             // buttonDodaj
             // 
-            buttonDodaj.Location = new Point(696, 29);
+            buttonDodaj.Location = new Point(557, 23);
             buttonDodaj.Margin = new Padding(2);
             buttonDodaj.Name = "buttonDodaj";
-            buttonDodaj.Size = new Size(112, 34);
+            buttonDodaj.Size = new Size(90, 27);
             buttonDodaj.TabIndex = 8;
             buttonDodaj.Text = "Dodaj";
             buttonDodaj.UseVisualStyleBackColor = true;
@@ -104,9 +104,9 @@
             // 
             // KoncertForma
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1109, 534);
+            ClientSize = new Size(961, 427);
             Controls.Add(buttonDodaj);
             Controls.Add(buttonObrisi);
             Controls.Add(buttonIzmeni);
